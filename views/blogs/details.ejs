@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/header')%>
+</head>
+
+<body>
+<%- include('../partials/nav') -%>
+<div class="container pt-5">
+    <div class="card">
+        <div class="card-body">
+        <h1>
+            <%= blog.title %>
+            </h1>
+            
+            <h4 class = "text-muted mt-3">
+                <%= blog.snippet %>
+            </h4>
+            
+            <p class ="text-white mt-4">
+                <%= blog.body%>
+            </p>
+
+            <div class="d-flex justify-content-end">
+                <a id ="deleteBtn" data-doc="<%= blog._id %>" class="btn btn-danger btn-md">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const deleteBtn = document.getElementById('deleteBtn');
+
+    deleteBtn.addEventListener('click',(event)=>{
+        const endpoint = `/blogs/${deleteBtn.dataset.doc}`;
+
+        fetch(endpoint, {
+            method : 'DELETE',            
+        })
+        .then((response)=>{ 
+            response.json()
+            .then( data => window.location.href = data.redirect)
+            .catch( err => console.log(err))
+        })
+        .catch((err)=>{ console.log(err) })
+    })
+</script>
+<%- include('../partials/footer') -%>

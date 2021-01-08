@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/header')%>
+</head>
+
+<body>
+<%- include('../partials/nav') -%>
+<div class="container">
+    <h3 class="text-center mt-3">Add New Blog</h3>
+    <form action="/blogs" method="POST">
+        <div class ="md-form mb-5">    
+            <input type="text" class ="form-control" name="title" id="title" required>
+            <label for="title">Blog Title</label>
+        </div>
+        <div class ="md-form mb-5">
+            <input type="text" class ="form-control" name="snippet" id="snippet" required>
+            <label for="snippet">Blog snippet</label>
+        </div>
+        <div class ="md-form mb-5">
+            <textarea name="body" id="body" class ="form-control md-textarea" required></textarea>
+            <label for="body">Blog body</label>
+        </div>
+        <button class ="btn special-color text-white w-100">Submit</button>
+        
+    </form>
+</div>
+<%- include('../partials/footer') -%>
